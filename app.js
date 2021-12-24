@@ -8,7 +8,7 @@ require("dotenv").config();
 const Validator = require('express-validator');
 const app = express();
 
-mongoose.connect('mongodb+srv://tekeshwar:Emor%401234@cluster0.nzgvf.mongodb.net/userManagement?authSource=admin&replicaSet=atlas-fqvh5t-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true',
+mongoose.connect('',
     {
       useNewUrlParser: true,
       useCreateIndex: true,
