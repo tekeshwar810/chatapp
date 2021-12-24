@@ -72,8 +72,6 @@ app.get("/login",(req,res)=>{
 app.get("/signup",(req,res)=>{
   res.render("register",{err_msg:" "})
 })
-
-
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
