@@ -1,0 +1,40 @@
+{
+  "name": "user-management",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js",
+    "dev": "parcel chats.ejs",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@sap/audit-logging": "^5.0.0",
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.26.2",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^10.0.0",
+    "ejs": "^2.6.2",
+    "express": "~4.16.1",
+    "express-validator": "^5.3.1",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.13",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.2",
+    "ngrok": "^4.0.1",
+    "node-localstorage": "^2.2.1",
+    "nodemailer": "^6.6.1",
+    "socket.io": "^4.1.2",
+    "socket.io-client": "^4.1.2",
+    "socket.io-stream": "^0.9.1",
+    "uniqid": "^5.3.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+     }
+}

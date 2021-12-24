@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+			integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="css/style.css"/>
+		<title>MyChat</title>
+	</head>
+	<style>
+		@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+:root {
+	--dark-color-a: #62af09;
+	--dark-color-b: #000000;
+	--light-color: #e6e9ff;
+	--success-color: #5cb85c;
+	--error-color: #d9534f;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	background: var(--light-color);
+}
+
+.err_msg{
+	color: rgb(177, 14, 14);
+	padding: 10px 0px;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.btn {
+	cursor: pointer;
+	padding: 5px 15px;
+	background: var(--light-color);
+	color: var(--dark-color-a);
+	border: 0;
+	font-size: 17px;
+}
+
+/* Chat Page */
+
+.chat-container {
+	max-width: 1100px;
+	background: #fff;
+	margin: 30px auto;
+	overflow: hidden;
+}
+
+.chat-header {
+	background: var(--dark-color-a);
+	color: #fff;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 15px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.chat-main {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+}
+
+.chat-sidebar {
+	background: var(--dark-color-b);
+	color: #fff;
+	padding: 20px 0px 60px;
+	overflow-y: scroll;
+}
+
+.chat-sidebar h2 {
+	font-size: 20px;
+	background: rgba(0, 0, 0, 0.1);
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.chat-sidebar h3 {
+	margin-bottom: 15px;
+}
+
+.chat-sidebar ul li {
+	padding: 10px 0px;
+}
+
+.chat-messages {
+	padding-left: 35px;
+	padding-right: 35px	;
+	padding-top: 15px;
+	font-size: 15px;
+	max-height: 500px;
+	overflow-y: scroll;
+	height: 65vh;
+}
+a {
+	color: whitesmoke;
+	text-decoration: none;
+  }
+.user-btn{
+	padding: 10px 0px;
+	background-color: #62af09;
+	border: none;
+	font-size: 15px;
+	border-radius: 5px;
+	font-weight: 700;
+	margin-left: 27px;
+    margin-bottom: 10px;
+	cursor: pointer;
+
+}  
+.userLink{
+	padding: 9px 64px;
+}
+.userList{
+	padding: 9px 103px;
+}
+.LI {
+	font-family: monospace;
+	font-weight: bold;
+	
+}
+.LI:hover{
+	background-color: gray;
+}
+.other{
+	text-align: left;
+	padding: 0px 10px;
+	margin-bottom: 4px;
+	margin-top: 0px;
+	display: inline-block;
+	font-family: monospace;
+}
+.Type{
+	color: green;
+	font-size: 9.5px;
+	font-weight: bold;
+	font-family: sans-serif;
+}
+
+.online{
+	margin-bottom: 15px;
+	padding-left: 12px;
+	font-size: 11px;
+}
+
+/*send msg css*/
+.listMsg-1{
+	/* display: flex;
+	flex-direction: row-reverse; */
+	margin-top: 0px;
+	padding-top:10px;
+	padding-bottom:0px;
+	padding-left:10px;
+	padding-right:10px;
+	color: black;
+	font-size: 15px;
+}
+/*recieve msg css*/
+.listMsg-2{
+	color:black;
+	margin-top: 0px;
+	padding-bottom:0px;
+	padding-top:10px;
+	padding-bottom:0px;
+	padding-left:10px;
+	padding-right:10px;
+	font-size: 15px;
+}
+.txt-msg1{
+	background-color: rgb(34, 207, 34);
+	padding-right: 10px;
+	padding-left: 70px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 5px;
+}
+.txt-msg2{
+	background-color: gainsboro;
+	padding-left: 70px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 5px;
+}
+
+.chat-messages .message {
+	padding: 10px;
+	margin-bottom: 15px;
+	background-color: var(--light-color);
+	border-radius: 5px;
+}
+
+.chat-messages .message .meta {
+	font-size: 15px;
+	font-weight: bold;
+	color: var(--dark-color-b);
+	opacity: 0.7;
+	margin-bottom: 7px;
+}
+
+.chat-messages .message .meta span {
+	color: #777;
+}
+
+.chat-form-container {
+	padding: 20px 30px;
+	background-color: var(--dark-color-a);
+}
+
+.chat-form-container form {
+	display: flex;
+}
+
+.chat-form-container input[type='text'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	flex: 1;
+	
+}
+
+/* Join Page */
+.join-container {
+	max-width: 500px;
+	margin: 80px auto;
+	color: #fff;
+}
+
+.join-header {
+	text-align: center;
+	padding: 20px;
+	background: var(--dark-color-a);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+.join-main {
+	padding: 30px 40px;
+	background: var(--dark-color-b);
+}
+
+.join-main p {
+	margin-bottom: 20px;
+}
+
+.join-main .form-control {
+	margin-bottom: 20px;
+}
+
+.join-main label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.join-main input[type='text'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+
+.join-main input[type='password'] {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+
+.join-main select {
+	font-size: 16px;
+	padding: 5px;
+	height: 40px;
+	width: 100%;
+}
+
+.join-main .btn {
+	margin-top: 20px;
+	width: 100%;
+}
+
+@media (max-width: 700px) {
+	.chat-main {
+		display: block;
+	}
+
+	.chat-sidebar {
+		display: none;
+	}
+}
+
+	</style>
+	<body>
+		
+		<div class="join-container">
+			<span class="err_msg"><%= err_msg %></span>
+			<header class="join-header">
+			
+				<h1><i class="fas fa-smile">&nbsp;</i>MyChat</h1>
+			</header>
+			<main class="join-main">
+				<form method="POST" action="/api/user_signup">
+                <div class="form-control">
+						<label for="name">Name</label>
+						<input
+							type="text"
+							name="name"
+							id="name"
+							placeholder="Enter Your Name"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label for="dob">DOB</label>
+						<input
+							type="text"
+							name="dob"
+							id="dob"
+							placeholder="Enter Your DOB (dd/mm/yyyy)"
+							required
+						/>
+					</div>
+					<div class="form-control">
+						<label for="username">Email</label>
+						<input
+							type="text"
+							name="email"
+							id="username"
+							placeholder="Enter Email Id"
+							required
+						/>
+					</div>
+                    <div class="form-control">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							name="password"
+							id="Password"
+							placeholder="Enter Password"
+							required
+						/>
+					</div>
+					<button type="submit" class="btn">Sign Up</button>
+				</form>
+			</main>
+		</div>
+	</body>
+</html>

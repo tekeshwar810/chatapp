@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/group.css" type="text/css">
+</head>
+
+<body>
+  <div class="col-md-12 grp_con" >
+    <span style="color: green;" id="grp_msg"></span>
+    <span style="color: red;" id="grp_err"></span>
+  
+    <div class="group_sec">
+      <div class="form-group" >
+        <h1>Update Group</h1>
+        <label for="exampleInputEmail1">Group Name</label>
+        <input type="text" name="group_name" class="form-control" id="update_grp_input"
+          aria-describedby="emailHelp" required>
+      </div>
+      <div class="form-check">
+          <% if(member_list.length > 0) {%>
+        <label for="">Member List</label><br>
+        <%  member_list.forEach((ele)=>{%>
+          <input type="checkbox" name="group_ids" class="form-check-input myCheck2" value="<%=ele._id%>"
+            id="exampleCheck">
+          <label class="form-check-label" for="exampleCheck1">
+            <%= ele.name %>
+          </label></br>
+          <% }) %>
+          <% } else{%>
+                <span style="color: rgb(8, 139, 8);">All member already add in group you can change group name</span>
+            <% } %>
+      </div>
+      <button class="chek" type="submit" onclick="update_group()" class="btn btn-primary">Update Group</button>
+  </div>
+  
+  </div>
+ <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+ <!-- <script src="/socket.io/socket.io.js"></script>  -->
+ <script src="/js/update_grp.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+.grp_con{
+	height: 70vh;
+    padding-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.chek{
+    margin-top: 10px;
+    border: none;
+    width: 150px;
+    height:45px;
+    background-color: green;
+    color: whitesmoke;
+    font-weight: bold;
+    border-radius: 5px;
+}

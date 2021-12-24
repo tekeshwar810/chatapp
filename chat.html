@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   </head>
+<body>
+    <div id='type' style="color:green; width:50%;height:20px;margin-bottom: 2px;"></div>
+    <div id="chat" style="border: 2px solid black; width:50%;height: 400px;">
+        <h3 id="join_name_room" style="display: none;"></h3>
+    </div>   </br>
+    <input type="text" placeholder="Type room name and join" style="width: 42%; height: 20px" id="join">
+    <button onclick="join()" style="width: 10%; height: 26.5px;">Join</button></br></br>
+    <input type="text" onkeypress="typing()"  style="width: 42%; height: 20px" placeholder="Type new message" name="mess" id="mess">
+    <button  id ='seMsg'onclick="send()" style="width: 10%; height: 26.5px;">Send</button></br></br>
+    <h3 id='join_name'></h3>
+    <h3 id='conectId'></h3>
+    <h3 id='disconectId'></h3>
+  <ul id ='data'>
+      <li class="lg">ram</li>
+      <li class="lg">lakhan</li>
+      <li class="lg">shyam</li>
+  </ul>
+    <!-- <h3 id="Data"style="padding-right: 10px; text-align: right; "></h3> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+       
+        const socket  = io()
+        socket.on('connection')
+        socket.on('message',message=>{
+            console.log(message)
+            var chat_box = document.getElementById('chat')
+            const disconect_id = document.createElement("h4")
+            disconect_id.style.cssText = 'text-align: left; color:grey; padding-left:5px;'
+            var dis = chat_box.appendChild(disconect_id)
+            dis.innerHTML = message
+
+        })
+        socket.on('userid',id=>{
+            console.log(id,'ids')
+            document.getElementById('conectId').innerHTML = `You are connected with this id :${id}`
+        })
+        
+        socket.on('room-join',(data)=>{
+            // const x = document.getElementById('join_name')
+            // console.log(data,'run',x)
+            // x.innerHTML = data
+        })
+        socket.on('send-msg',(data)=>{
+            var chat_box = document.getElementById('chat')
+            chat_box.style.cssText ='border: 2px solid black; width:50%;height:400px'
+            var rm = document.createElement("h4");
+            rm.style.cssText = 'text-align: left; color:grey; padding-left:5px;'
+            console.log(rm)
+            console.log(data,'empy')
+            var recive = chat_box.appendChild(rm)
+            recive.innerHTML = data
+        })
+
+        socket.on('Typing',(obj,type_person)=>{
+            document.getElementById('type').innerHTML =type_person +' '+ obj.txt
+            setTimeout(() => {
+                document.getElementById('type').innerHTML =obj.blank
+          
+            }, 4000);
+        })
+        const join = ()=>{
+            var name_room = document.getElementById('join').value
+            document.getElementById('join_name_room').innerHTML = name_room
+            var x = document.getElementById('join_name').innerHTML = `<h5>You are join this room  ${name_room}<h5>`
+            socket.emit('room-join',name_room)
+        }
+        const send = ()=>{
+            var input = document.getElementById('mess') 
+       
+            const rn = document.getElementById('join_name_room').innerHTML
+            var Msg = input.value
+            // document.getElementById('Data').innerHTML = Msg
+            var chat_box = document.getElementById('chat')
+            chat_box.style.cssText ='border: 2px solid black; width:50%;height:400px'
+            var sm = document.createElement("h4");
+            sm.style.cssText = 'text-align: right; color:green; padding-right:5px'
+            var send = chat_box.appendChild(sm)
+            send.innerHTML = Msg
+            document.getElementById('mess').value = '' 
+            socket.emit('send-msg',Msg,rn)
+           
+        }
+        const typing = ()=>{
+            const r_n = document.getElementById('join_name_room').innerHTML
+            const obj ={
+                txt:'typing...',
+                blank:' ',
+                room_name:r_n
+            }
+            
+            socket.emit('Typing',obj)
+        }
+      
+       
+    </script>
+</body>
+</html>

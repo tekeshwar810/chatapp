@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <title>ChatCord App</title>
+</head>
+<body>
+  <iframe src="" style="display: none; width: 100%; height: 100vh; z-index: 1; position: absolute;" id="doc_pre"></iframe>
+  <p id="time_tags" style= ></p>
+  <div style="margin-bottom: 0px;">
+  <input id="recieverID" style="display: none;" value='null'>
+  <input style="display: none;" value='null' id="recieverName">
+</div>
+  <div class="chat-container">
+    <header class="chat-header">
+     <h1><i class="fas fa-smile">&nbsp;</i>My Chat</h1>
+      <h1 class="userName" id="userName"><%= msg.name %></h1> <span id="userId" style="display: none;"><%= msg._id %></span>
+          <div>
+            <a href="/api/create_group/<%= msg._id %>">  <i class="fas fa-user-plus" style="margin-right: 10px;"></i></a>
+            <a href="/api/user_logout/<%= msg._id %>" class="btn" onclick="clear_storage()" >Log Out</a>
+          </div>
+    </header>
+    <main class="chat-main">
+      <div class="chat-sidebar">
+        <button class="user-btn" onclick="clear_storage()"> <a class="userLink" href="/api/user_list/<%= msg._id %>">Users List</a></button>
+        <ul id="users">
+          <% user_list.forEach(ele => { %>
+            <li data-ele="<%= JSON.stringify(ele)%>"  class="LI">
+              <% if(ele.room_id === undefined) { %>
+                    <a class="userList" href="/api/conversation_list/<%= msg._id %>/<%= ele._id %>"><%= ele.name%></a>
+              <% }else{ %>
+                    <a class="userList" href="/api/grp_conversation_list/<%= msg._id %>/<%= ele.room_id %>"><%= ele.name%></a>
+              <% } %>
+            </li>
+          <% }); %>
+        </ul> 
+      </div>
+      <div class="chat-messages" id="chat-messages1">
+        <div class="chatHead">
+        <h1 style="text-align: center; margin-top: 30px;"><%= msg.text %></h1>
+        <span class="img" id="Img"></span>  <h2 id ='other_user' class="other"></h2><span id="typing" class="Type"></span><span id="create" style="font-weight: 400;"></span><span onclick="attach_files()" class="attach" id="attach_file"></span><span onclick="grp_edit()" id="edit" class="grp_edit_btn"></span>
+        <ul class="menu_list" id='menu' style="display: none;">
+          <li><a href="#">Remove</a></li>
+          <li> <a href="/api/add_other_member">Edit</a></li>
+        </ul>
+        <ul class="attach_list" id='attach_f' style="display:none">
+          <li>
+             <a onclick="chooseImage()">Images
+                <input type="file" id="imageFile" onchange="sendImage(this)" accept="image/*" style="display: none;" />
+            </a>
+          </li>
+          <li> 
+            <a onclick="chooseDoc()">Documents</a>
+            <input type="file" id="documentFile" onchange="sendDoc(this)"  accept=".xlsx, .xls, .doc, .docx,.ppt, .pptx, .txt, .pdf, .zip" style="display: none;" />
+          </li>
+        </ul>
+        <div id = "grp_member" class="group_mem"></div>
+        <p class="online" id="Online"></p>
+        
+      </div>
+						<!-- <p class="meta"> <span></span></p> -->
+            
+            <% msgList.forEach(MSG => { %>
+                <% if(MSG.senderId === msg._id ){ %>
+                           <% if(MSG.msg_type === "text" ){ %>
+					                    <div id='send_msg' class="listMsg-1"><p id="txt_s" class="txt-msg1"><%= MSG.text_msg %><span class="Time" ><%= MSG.current_time %></span></p><br></div>
+                            <% }else if(MSG.msg_type === "pdf") { %>
+                              <div class="listDoc-1">
+                                  <div align="center" class="doc-msg1">
+                                     <p class="doc_name"><%= MSG.file_name %></p><div class="hide_loder"><a href ="<%= MSG.text_msg %>"><i class="fa fa-download" aria-hidden="true"></i></a></div>
+                                     <div class="doc_info"><span class="doc_size"><i class="fas fa-circle"></i><%= MSG.file_s %><i class="fas fa-circle"></i><%= MSG.msg_type %></span><span class="doc_time"><%= MSG.current_time %></span></div>
+                                  </div>
+                                </div>   
+                            <% }else{ %>
+                              <div id='send_msg' class="listImg-1"><p class="img-msg1"><img src="<%= MSG.text_msg %>" alt="No Preview" width="100px" height="100px"><span class="Time_img"><%= MSG.current_time %></span><p></div>
+                           <% } %>   
+              <% }else { %>
+                  <% if(MSG.room_id === undefined) { %>
+                            <% if(MSG.msg_type === "text" ){ %>
+                              <div id='recieve_msg' class="listMsg-2"><p id="txt_r" class="txt-msg2"> <%= MSG.text_msg %><span class="Time" ><%= MSG.current_time %></span></p><br></div>
+                            <% }else if(MSG.msg_type === "pdf") { %>
+                                <div class="listDoc-2">
+                                    <div align="center" class="doc-msg2">
+                                    <p class="doc_name_1"><%= MSG.file_name %></p><div class="hide_loder"><a href ="<%= MSG.text_msg %>"><i class="fa fa-download" aria-hidden="true"></i></a></div>
+                                    <div class="doc_info_1"><span class="doc_size"><i class="fas fa-circle"></i><%= MSG.file_s %><i class="fas fa-circle"></i><%= MSG.msg_type %></span><span class="doc_time"><%= MSG.current_time %></span></div>
+                                </div>
+                              </div>
+                           <% }else { %>
+                               <div id='recieve_msg' class="listImg-2"><p class="img-msg2"><img src="<%= MSG.text_msg %>" alt="No Preview" width="100px" height="100px"><span class="Time_img"><%= MSG.current_time %></span><p></div> 
+                            <% } %>   
+               <% }else{ %> 
+                            <% if(MSG.msg_type === "text" ){ %>
+                              <div id='recieve_msg' class="listMsg-2"><p class="grp_rec"><%= MSG.senderName %></p><p id="txt_r" class="txt-msg2"> <%= MSG.text_msg %><span class="Time" ><%= MSG.current_time %></span></p><br></div>
+                            <% }else { %>  
+                              <div id='recieve_msg' class="listImg-2"><p class="grp_rec"><%= MSG.senderName %></p><p class="img-msg2"><img src="<%= MSG.text_msg %>" alt="No Preview" width="100px" height="100px"><span class="Time_img" ><%= MSG.current_time %></span><p><br></div>
+                            <% } %>     
+                  <% } %>       
+            <% } %> 
+           <% }); %>
+           
+     </div>
+    </main>
+    <div class="chat-form-container" id="chat-form">
+
+        <input
+          onkeydown="typing()"
+          style="width: 90%;"
+          id="msg"
+          type="text"
+          placeholder="Type a new message"
+          autocomplete="off"
+        />
+        <button style="padding-top: 10px; padding-bottom: 10px;" size="70" class="btn" onclick="sendMsg()"><i class="fas fa-paper-plane"></i> Send</button>
+   
+    </div>
+  </div>
+  <!-- <script type = "text/javascript" >
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
+   </script> -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="socket.io-stream.js"></script>
+  <script src="/js/socket_client.js"></script>
+</body>
+</html>
