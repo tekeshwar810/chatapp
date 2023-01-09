@@ -54,3 +54,12 @@
 {"message":"password invalid","level":"error","timestamp":"2023-01-09T11:47:03.305Z"}
 {"message":"password invalid","level":"error","timestamp":"2023-01-09T11:47:09.162Z"}
 {"message":"password invalid","level":"error","timestamp":"2023-01-09T12:06:07.373Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2023-01-09T12:46:57.019Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2023-01-09T12:47:07.326Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2023-01-09T12:48:54.444Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2023-01-09T12:49:02.066Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2023-01-09T12:49:14.311Z"}
+{"message":"password invalid","level":"error","timestamp":"2023-01-09T12:49:46.049Z"}
+{"message":"password invalid","level":"error","timestamp":"2023-01-09T12:49:52.673Z"}
+{"message":"password invalid","level":"error","timestamp":"2023-01-09T12:49:58.632Z"}
+{"message":"Password must contain at least one (numeric digit,uppercase,lowercase) and length 6-20  ","level":"error","timestamp":"2023-01-09T12:50:38.605Z"}

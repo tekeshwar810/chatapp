@@ -159,8 +159,8 @@ exports.user_active_check = async(req,res,next)=>{
     const infoUser = await user_modal.findOne({email:req.body.email})
     if(infoUser){
 
-        if(infoUser.email_verify === true || infoUser.email_verify === false){
-            if(infoUser.status === true || infoUser.email_verify === false){
+        // if(infoUser.email_verify === true || infoUser.email_verify === false){
+            // if(infoUser.status === true || infoUser.email_verify === false){
              
                 const validPassword = await validatePassword(password, infoUser.password)
                     if (!validPassword) {
@@ -172,14 +172,14 @@ exports.user_active_check = async(req,res,next)=>{
                         req.user = infoUser
                         next()
                 }
-            }else{
-                logger.error('email not activate error')
-                res.status(401).json({msg:'your account is not active please contact to admin',success:false})        
-            }
-        }else{  
-                logger.error('email verfiy error')
-                res.status(401).json({msg:'your email id is not verify',success:false})        
-        }
+            // }else{
+            //     logger.error('email not activate error')
+            //     res.status(401).json({msg:'your account is not active please contact to admin',success:false})        
+            // }
+        // }else{  
+        //         logger.error('email verfiy error')
+        //         res.status(401).json({msg:'your email id is not verify',success:false})        
+        // }
     }else{
         logger.error('user not exist please signup')
         res.status(400).json({msg:'this user not exist,Please SignUp',success:false})
