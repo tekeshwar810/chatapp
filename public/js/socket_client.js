@@ -167,6 +167,8 @@ if(socket != undefined){
                 socket.on("room_msg",(msg,roomId)=>{
                 })
             }
+        }else{
+            console.log('detail null')
         }
 
         socket.on("get_online_user",(online_Obj)=>{

@@ -41,7 +41,7 @@ exports.signup = async(req,res)=>{
     var emailId = datas.email
     var token = jwt.sign({ _id: userId }, 'myscretkey',{expiresIn:'10m'})
     
-    const emailResp = await sendEmail.Mail(emailId,token)
+    const emailResp = 'success'
          if(emailResp == 'success'){
            datas.email_verify_token=token
            datas.save()

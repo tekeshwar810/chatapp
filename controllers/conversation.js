@@ -4,9 +4,6 @@ const grp_conversation = require("../models/group_conversation")
 const userModal = require("../models/users")
 var uniqid = require('uniqid');
 
-
-
-
 exports.list_member = async (req,res)=>{
     const list = await userModal.find({role:0,_id:{$ne:req.params.userId}})
     res.render('add_member',{member_list:list,msg:''})

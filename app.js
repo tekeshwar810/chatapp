@@ -8,14 +8,15 @@ require("dotenv").config();
 const Validator = require('express-validator');
 const app = express();
 
-mongoose.connect('',
+mongoose.connect('mongodb://localhost:27017/helo',
     {
       useNewUrlParser: true,
       useCreateIndex: true,
       useUnifiedTopology: true,
  }).then(() => {console.log("DB Connected Successfully...")})
-   .catch(()=>{
-     logger.error('database not connected')
+   .catch((e)=>{
+     
+     console.error('database not connected',e)
  })
 
 // configure ejs engine 

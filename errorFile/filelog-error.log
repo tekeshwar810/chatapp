@@ -34,3 +34,23 @@
 {"code":"EAUTH","response":"535-5.7.8 Username and Password not accepted. Learn more at\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials q4sm2693846wrs.56 - gsmtp","responseCode":535,"command":"AUTH PLAIN","level":"error","timestamp":"2021-11-11T11:14:06.375Z"}
 {"code":"EAUTH","response":"535-5.7.8 Username and Password not accepted. Learn more at\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials f20sm6407166pfe.166 - gsmtp","responseCode":535,"command":"AUTH PLAIN","level":"error","timestamp":"2021-12-23T11:31:34.754Z"}
 {"code":"EAUTH","response":"535-5.7.8 Username and Password not accepted. Learn more at\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials m18sm6234415pfk.68 - gsmtp","responseCode":535,"command":"AUTH PLAIN","level":"error","timestamp":"2021-12-23T11:31:50.123Z"}
+{"message":"password invalid","level":"error","timestamp":"2022-01-07T06:59:21.798Z"}
+{"message":"database not connected","level":"error","timestamp":"2022-05-09T13:06:09.860Z"}
+{"message":"database not connected","level":"error","timestamp":"2022-05-09T13:07:20.494Z"}
+{"message":"database not connected","level":"error","timestamp":"2022-05-09T13:07:49.385Z"}
+{"message":"Password must contain at least one (numeric digit,uppercase,lowercase) and length 6-20  ","level":"error","timestamp":"2022-05-17T10:43:22.568Z"}
+{"message":"invalid date error","level":"error","timestamp":"2022-05-17T10:45:08.555Z"}
+{"message":"invalid date error","level":"error","timestamp":"2022-05-17T10:45:20.690Z"}
+{"message":"password invalid","level":"error","timestamp":"2022-05-17T10:45:47.649Z"}
+{"message":"Password must contain at least one (numeric digit,uppercase,lowercase) and length 6-20  ","level":"error","timestamp":"2022-05-17T10:46:41.802Z"}
+{"message":"password invalid","level":"error","timestamp":"2022-06-17T07:27:57.391Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2022-10-11T11:45:18.692Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2022-10-11T11:45:28.178Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2022-10-11T11:45:42.239Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2022-10-11T11:45:55.230Z"}
+{"message":"user not exist please signup","level":"error","timestamp":"2022-10-11T11:45:59.449Z"}
+{"message":"please enter only aplphabat in name field ","level":"error","timestamp":"2022-10-11T11:56:51.611Z"}
+{"message":"password invalid","level":"error","timestamp":"2023-01-09T11:46:56.667Z"}
+{"message":"password invalid","level":"error","timestamp":"2023-01-09T11:47:03.305Z"}
+{"message":"password invalid","level":"error","timestamp":"2023-01-09T11:47:09.162Z"}
+{"message":"password invalid","level":"error","timestamp":"2023-01-09T12:06:07.373Z"}
