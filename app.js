@@ -8,7 +8,7 @@ require("dotenv").config();
 const Validator = require('express-validator');
 const app = express();
 
-mongoose.connect('mongodb+srv://tekeshwar:Dewangan@cluster0.ev1ml9u.mongodb.net/chatapp',
+mongoose.connect(process.env.DB,
     {
       useNewUrlParser: true,
       useCreateIndex: true,
