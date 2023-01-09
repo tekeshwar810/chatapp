@@ -8,7 +8,7 @@ require("dotenv").config();
 const Validator = require('express-validator');
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/helo',
+mongoose.connect(process.env.DB,
     {
       useNewUrlParser: true,
       useCreateIndex: true,
