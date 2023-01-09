@@ -45,7 +45,7 @@ app.use(express.static(path.join(__dirname, '/public')));//static file load just
 app.use('/api',user)
 app.use('/api',conversation)
 
-const port = 5000
+const port = process.env.PORT || 5000;
 
 // socket io 
 const server = require('http').createServer(app);
